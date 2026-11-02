@@ -20,7 +20,12 @@ export default function Login() {
     setSubmitting(false)
 
     if (error) {
-      setError('ログインに失敗しました。メールアドレスとパスワードを確認してください。')
+      if (error.code === 'email_not_confirmed') {
+        // 会員登録後、確認メールのリンクをまだクリックしていない場合
+        setError('メールアドレスの確認が完了していません。確認メール内のリンクをクリックしてからログインしてください。')
+      } else {
+        setError('ログインに失敗しました。メールアドレスとパスワードを確認してください。')
+      }
       return
     }
     // ログイン成功後は物件一覧へ
