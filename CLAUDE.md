@@ -6,27 +6,34 @@
 
 不動産アプリ（realestate-app）。
 
-<!-- TODO: アプリの目的・主な機能・想定ユーザーを記載する -->
+Supabase 認証付きの不動産管理 Web アプリ。会員登録・ログイン後に物件一覧（現在はダミーデータ）を表示する。
 
 ## 技術スタック
 
-<!-- TODO: 決まり次第記載する（例: フロントエンド / バックエンド / DB / ホスティング） -->
+- React + Vite（JavaScript / JSX）
+- React Router（画面遷移）
+- Supabase（認証：メールアドレス＋パスワード）
+
+Supabase の接続情報は `.env` の `VITE_SUPABASE_URL` / `VITE_SUPABASE_PUBLISHABLE_KEY` で管理する（`.env` はコミットしない。雛形は `.env.example`）。
 
 ## 開発コマンド
 
-<!-- TODO: 決まり次第記載する -->
-
 ```bash
-# 依存関係のインストール
-# 開発サーバー起動
-# テスト実行
-# Lint / フォーマット
-# ビルド
+npm install      # 依存関係のインストール
+npm run dev      # 開発サーバー起動（http://localhost:5173）
+npm run build    # ビルド
+npm run preview  # ビルド結果の確認
 ```
 
 ## ディレクトリ構成
 
-<!-- TODO: 主要なディレクトリとその役割を記載する -->
+- `src/lib/supabase.js` — Supabase クライアント
+- `src/contexts/AuthContext.jsx` — ログイン状態の管理（`useAuth` フック）
+- `src/components/` — `ProtectedRoute`（未ログインならログイン画面へ）、`GuestRoute`（ログイン済みなら物件一覧へ）
+- `src/pages/` — `Login` / `Signup` / `Properties`
+- `src/data/properties.js` — 物件のダミーデータ
+
+コード中のコメントは日本語で書く。
 
 ## Git 運用ルール
 
